@@ -98,9 +98,12 @@ public class RNInAppBrowser {
                 "Invalid secondary toolbar color '" + colorString + "': " + e.getMessage());
       }
     }
-    if (options.hasKey(KEY_DEFAULT_SHARE_MENU_ITEM) && 
-        options.getBoolean(KEY_DEFAULT_SHARE_MENU_ITEM)) {
-      builder.addDefaultShareMenuItem();
+    if (options.hasKey(KEY_DEFAULT_SHARE_MENU_ITEM) &&
+            options.getBoolean(KEY_DEFAULT_SHARE_MENU_ITEM)) {
+      //builder.addDefaultShareMenuItem();
+      builder.setShareState(CustomTabsIntent.SHARE_STATE_ON);
+    } else {
+      builder.setShareState(CustomTabsIntent.SHARE_STATE_OFF);
     }
     if (options.hasKey(KEY_ANIMATIONS)) {
       final ReadableMap animations = options.getMap(KEY_ANIMATIONS);
