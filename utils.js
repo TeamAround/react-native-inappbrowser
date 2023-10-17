@@ -48,11 +48,11 @@ function handleAppStateActiveOnce(): Promise<void> {
     }
     function handleAppStateChange(nextAppState: AppStateStatus) {
       if (nextAppState === 'active') {
-        AppState.removeEventListener('change', handleAppStateChange);
+        subscription.remove();
         resolve();
       }
     }
-    AppState.addEventListener('change', handleAppStateChange);
+    const subscription = AppState.addEventListener('change', handleAppStateChange);
   });
 }
 
